@@ -9,6 +9,7 @@ graphene-django = "*"
 django-graphql-auth = "*"
 django-graphql-jwt = "*"
 django-cors-headers = "*"
+pillow = "*"
 
 [dev-packages]
 
