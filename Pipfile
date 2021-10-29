@@ -12,6 +12,7 @@ django-cors-headers = "*"
 pillow = "*"
 redis = "*"
 django-q = "*"
+django-environ = "*"
 
 [dev-packages]
 
