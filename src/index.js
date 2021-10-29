@@ -1,13 +1,47 @@
 import React from "react";
 import ReactDOM from "react-dom";
+import {
+    ApolloClient,
+    InMemoryCache,
+    ApolloProvider,
+    createHttpLink,
+} from "@apollo/client";
+import { setContext } from "@apollo/client/link/context";
+
 import "./index.css";
+
+import { AuthProvider } from "./context/auth";
+
 import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
+const httpLink = createHttpLink({
+    uri: process.env.REACT_APP_GRAPHQL_URI,
+});
+
+const authLink = setContext((_, { headers }) => {
+    const token = localStorage.getItem("token");
+    return {
+        headers: {
+            ...headers,
+            Authorization: token ? `JWT ${token}` : "",
+        },
+    };
+});
+
+const client = new ApolloClient({
+    link: authLink.concat(httpLink),
+    cache: new InMemoryCache(),
+});
+
 ReactDOM.render(
-    <React.StrictMode>
-        <App />
-    </React.StrictMode>,
+    <ApolloProvider client={client}>
+        <AuthProvider>
+            <React.StrictMode>
+                <App />
+            </React.StrictMode>
+        </AuthProvider>
+    </ApolloProvider>,
     document.getElementById("root")
 );
 
