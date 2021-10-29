@@ -69,11 +69,7 @@ class FarmerQuery(graphene.ObjectType):
     pass
 
 
-class FarmerMutation(graphene.ObjectType):
-    send_crop_recommendation = mutations.SendCropRecommendation.Field()
-    
-
-class SendCropPrediction(graphene.Mutation):
+class SendCropRecommendation(graphene.Mutation):
     class Arguments:
         crops = graphene.List(graphene.String)
 
@@ -82,4 +78,9 @@ class SendCropPrediction(graphene.Mutation):
     def mutate(self, info, name, **kwargs):
         ok = True
         # broadcast here
-        return SendCropPrediction(ok=ok)
+        return SendCropRecommendation(ok=ok)
+
+
+class FarmerMutation(graphene.ObjectType):
+    send_crop_recommendation = SendCropRecommendation.Field()
+    

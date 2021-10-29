@@ -10,4 +10,4 @@ class Mutation(AuthMutation, FarmerMutation, graphene.ObjectType):
 class Subscription(graphene.ObjectType):
     pass
 
-schema = graphene.Schema(query=Query, mutation=Mutation, subscription=Subscription)
+schema = graphene.Schema(query=Query, mutation=Mutation)
