@@ -1,7 +1,7 @@
 import graphene
-from farmer.schema import AuthMutation, AuthQuery
+from farmer.schema import AuthMutation, AuthQuery, CropsQuery, CropPlantationQuery
 
-class Query(AuthQuery):
+class Query(AuthQuery, CropsQuery, CropPlantationQuery):
     pass
 
 class Mutation(AuthMutation):

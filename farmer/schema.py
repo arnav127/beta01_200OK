@@ -3,7 +3,8 @@ import graphene
 from graphene_django import DjangoObjectType
 from graphql_auth.schema import UserQuery, MeQuery
 from graphql_auth import mutations
-from .models import ExtendUser
+from .models import ExtendUser, Crops, CropPlantation
+from graphql_jwt.decorators import login_required
 
 class UserType(DjangoObjectType):
     class Meta:
@@ -30,4 +31,39 @@ class AuthMutation(graphene.ObjectType):
     revoke_token = mutations.RevokeToken.Field()
 
 class AuthQuery(UserQuery, MeQuery, graphene.ObjectType):
+    pass
+
+class CropsType(DjangoObjectType):
+    
+    class Meta:
+        model = Crops
+
+class CropPlantationType(DjangoObjectType):
+    class Meta:
+        model = CropPlantation
+
+class CropsQuery(graphene.ObjectType):
+    all_crops = graphene.List(CropsType)
+    crop = graphene.Field(CropsType, name=graphene.String())
+
+    def resolve_all_crops(root, info):
+        return Crops.objects.all()
+
+    def resolve_crop(root, info, name):
+        return Crops.objects.get(name=name) # may need to change get to filter
+
+class CropPlantationQuery(graphene.ObjectType):
+    all_crops_planted = graphene.List(CropPlantationType)
+
+    crop_planted = graphene.Field(CropPlantationType, id = graphene.Int())
+
+    @login_required
+    def resolve_all_crops_planted(root, info):
+        return CropPlantation.objects.filter(farmer = info.context.user) #may need to change user to farmer
+
+    @login_required
+    def resolve_crop_planted(root, info, id):
+        return CropPlantation.objects.get(pk=id, farmer=info.context.user)
+
+class FarmerQuery(graphene.ObjectType):
     pass
