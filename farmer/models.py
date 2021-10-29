@@ -11,7 +11,8 @@ class ExtendUser(AbstractUser):
     EMAIL_FIELD = "email"
     
     phone_number = models.CharField(blank=False, max_length=20)
-    location = models.CharField(max_length=40)
+    city = models.CharField(max_length=40)
+    state = models.CharField(max_length=40)
 
     
 
