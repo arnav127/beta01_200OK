@@ -11,6 +11,7 @@ django-graphql-jwt = "<0.3.2"
 django-cors-headers = "*"
 pillow = "*"
 redis = "*"
+django-q = "*"
 
 [dev-packages]
 

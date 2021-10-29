@@ -42,6 +42,7 @@ INSTALLED_APPS = [
     'graphql_jwt.refresh_token.apps.RefreshTokenConfig',
     'graphql_auth',
     'django_filters',
+    'django_q',
     'farmer'
 ]
 
@@ -178,5 +179,22 @@ GRAPHQL_AUTH = {
         "username": "String",
         "first_name": "String",
         "last_name": "String"
+    }
+}
+
+Q_CLUSTER = {
+    'name': 'farmer_back',
+    'workers': 4,
+    'recycle': 500,
+    'timeout': 60,
+    'compress': True,
+    'save_limit': 250,
+    'queue_limit': 500,
+    'cpu_affinity': 1,
+    'label': 'Farmer Q',
+    'redis': {
+        'host': '127.0.0.1',
+        'port': 6379,
+        'db': 0, 
     }
 }
