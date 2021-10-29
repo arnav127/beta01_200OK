@@ -1,10 +1,13 @@
 import graphene
-from farmer.schema import AuthMutation, AuthQuery, CropsQuery, CropPlantationQuery
+from farmer.schema import AuthMutation, AuthQuery, CropsQuery, CropPlantationQuery, FarmerMutation
 
-class Query(AuthQuery, CropsQuery, CropPlantationQuery):
+class Query(AuthQuery, CropsQuery, CropPlantationQuery, graphene.ObjectType):
     pass
 
-class Mutation(AuthMutation):
+class Mutation(AuthMutation, FarmerMutation, graphene.ObjectType):
     pass
 
-schema = graphene.Schema(query=Query, mutation=Mutation)
+class Subscription(graphene.ObjectType):
+    pass
+
+schema = graphene.Schema(query=Query, mutation=Mutation, subscription=Subscription)
