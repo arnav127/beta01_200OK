@@ -34,7 +34,7 @@ const Login = () => {
             setErrMsg(error.message);
         } else {
             if (data.tokenAuth.success) {
-                history.push("/");
+                history.push("/dashboard");
                 login(data.tokenAuth);
             } else {
                 setErrMsg(data.tokenAuth.errors.nonFieldErrors[0].message);
