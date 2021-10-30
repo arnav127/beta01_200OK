@@ -216,6 +216,12 @@ Q_CLUSTER = {
     }
 }
 
+CHANNEL_LAYERS = {
+    "default": {
+        "BACKEND": "channels.layers.InMemoryChannelLayer"
+    }
+}
+
 CRONJOBS = [
     ('0 8 * * *', 'services.warnings.weather'),
     ('* * * * *', 'services.msrp.get_msrp_data'),
