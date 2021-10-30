@@ -12,4 +12,4 @@ class SoilHealth(models.Model):
     rainfall = models.FloatField(blank=False)
 
     def __str__(self):
-        return self.owner.username + " - " + self.soil_type
+        return self.owner.username
