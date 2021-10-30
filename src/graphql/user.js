@@ -56,6 +56,7 @@ const GET_USER = gql`
             email
             firstName
             lastName
+            city
         }
     }
 `;
