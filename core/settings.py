@@ -22,7 +22,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # Quick-start development settings - unsuitable for production
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 env = environ.Env()
-environ.Env.read_env(path.join(BASE_DIR, '.env.development'))
+environ.Env.read_env()
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str('SECRET_KEY')
 
@@ -57,6 +57,7 @@ INSTALLED_APPS = [
 ]
 
 MIDDLEWARE = [
+    'whitenoise.middleware.WhiteNoiseMiddleware',
     'django.middleware.security.SecurityMiddleware',
     'django.contrib.sessions.middleware.SessionMiddleware',
     'corsheaders.middleware.CorsMiddleware',
@@ -213,6 +214,7 @@ Q_CLUSTER = {
     'redis': {
         'host': env.str('REDIS_URL'),
         'port': env.str('REDIS_PORT'),
+        'password': env.str('REDIS_PASSWORD'),
     }
 }
 
@@ -232,3 +234,5 @@ WEATHER_API_KEY = env.str('WEATHER_API_KEY')
 GOVT_DATA_API_KEY=env.str('GOVT_DATA_API_KEY')
 
 SMS_API_KEY = env.str('SMS_API_KEY')
+
+STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'

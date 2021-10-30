@@ -19,6 +19,10 @@ django-crontab = "*"
 datagovindia = "*"
 django-channels-graphql-ws = "*"
 lightgbm = "*"
+whitenoise = "*"
+uvicorn = {extras = ["standard"], version = "*"}
+gunicorn = "*"
+psycopg2-binary = "*"
 
 [dev-packages]
 
