@@ -217,6 +217,7 @@ Q_CLUSTER = {
 }
 
 CRONJOBS = [
-    ('0 8 * * *', 'services.warnings.weather')
+    ('0 8 * * *', 'services.warnings.weather'),
+    ('* * * * *', 'services.msrp.get_msrp_data'),
 ]
 
