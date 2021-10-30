@@ -97,6 +97,7 @@ class CropPlantationCreate(graphene.Mutation):
         harvested_date = graphene.Date()
     
     @classmethod
+    @login_required
     def mutate(self, root, info, crop_name, planted_date, harvested_date):
         crop = Crops.objects.get(name = crop_name)
         
@@ -113,6 +114,7 @@ class CropPlantationUpdate(graphene.Mutation):
         harvested_date = graphene.Date()
     
     @classmethod
+    @login_required
     def mutate(self, root, info, **kwargs):
         crop_plantation = CropPlantation.objects.get(pk=id, farmer = info.context.user)
         for k, v in kwargs.items():
@@ -127,6 +129,7 @@ class CropPlantationDelete(graphene.Mutation):
     success = graphene.Boolean()
 
     @classmethod
+    @login_required
     def mutate(cls, root, info, id):
         nd = CropPlantation.objects.get(pk=id, farmer = info.context.user).delete()
         return CropPlantationDelete(success = (nd[0] == 1))
