@@ -3,8 +3,14 @@ import graphene
 from graphene_django import DjangoObjectType
 from graphql_auth.schema import UserQuery, MeQuery
 from graphql_auth import mutations
+
+from core.settings import BASE_DIR
 from .models import ExtendUser, City
 from graphql_jwt.decorators import login_required
+
+import environ
+import requests
+import os
 
 class UserType(DjangoObjectType):
     class Meta:
@@ -61,3 +67,15 @@ class SendCropRecommendation(graphene.Mutation):
 class FarmerMutation(graphene.ObjectType):
     send_crop_recommendation = SendCropRecommendation.Field()
     
+
+class WeatherQuery(graphene.ObjectType):
+    get_weather = graphene.Field(graphene.JSONString, city=graphene.String())
+
+    def resolve_get_weather(self, info, city):
+        env = environ.Env()
+        environ.Env.read_env(os.path.join(BASE_DIR, '.env.developement'))
+        WEATHER_API_KEY = env.str('WEATHER_API_KEY')
+        querytext = f'http://api.weatherapi.com/v1/current.json?key={WEATHER_API_KEY}&q={city}&aqi=yes'
+        print(querytext)
+        response = requests.get(querytext)
+        return response.json()
