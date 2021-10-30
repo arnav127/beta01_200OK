@@ -16,6 +16,7 @@ django-environ = "*"
 bs4 = "*"
 requests = "*"
 django-crontab = "*"
+django-channels-graphql-ws = "*"
 
 [dev-packages]
 

@@ -1,4 +1,6 @@
 import graphene
+import channels
+import channels_graphql_ws
 from farmer.schema import AuthMutation, AuthQuery, FarmerMutation, CityQuery
 from crops.schema import CropsQuery
 from crop_plantations.schema import CropPlantationQuery, CropPlantationMutation
@@ -30,3 +32,12 @@ class Subscription(graphene.ObjectType):
 
 
 schema = graphene.Schema(query=Query, mutation=Mutation)
+
+class WsConsumer(channels_graphql_ws.GraphqlWsConsumer):
+
+    schema = schema
+    
+    # send_keepalive_every = 42
+    async def on_connect(self, payload):
+        self.scope["user"] = await channels.auth.get_user(self.scope)
+
