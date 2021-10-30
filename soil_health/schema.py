@@ -40,7 +40,7 @@ class SoilHealthCreate(graphene.Mutation):
             owner=info.context.user,
             ph=ph,
             nitrogen=nitrogen,
-            potassium=potas,
+            potas=potas,
             phosphorous=phosphorous,
             temp = temp,
             rainfall = rainfall
