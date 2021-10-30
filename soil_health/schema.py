@@ -29,6 +29,7 @@ class SoilHealthCreate(graphene.Mutation):
         temp = graphene.Decimal()
 
     @classmethod
+    @login_required
     def mutate(
         self,
         root,
