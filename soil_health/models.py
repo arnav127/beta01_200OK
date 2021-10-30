@@ -6,7 +6,7 @@ class SoilHealth(models.Model):
     owner = models.ForeignKey(ExtendUser, on_delete=CASCADE)
     ph = models.FloatField(blank=False)
     nitrogen = models.FloatField(blank=False)
-    phosphorus = models.FloatField(blank=False)
+    phosphorous = models.FloatField(blank=False)
     potas = models.FloatField(blank=False)
     temp = models.FloatField(blank=False)
     rainfall = models.FloatField(blank=False)

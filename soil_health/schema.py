@@ -21,7 +21,7 @@ class SoilHealthCreate(graphene.Mutation):
 
     class Arguments:
         nitrogen = graphene.Decimal()
-        phosphorus = graphene.Decimal()
+        phosphorous = graphene.Decimal()
         potas = graphene.Decimal()
         humidity = graphene.Decimal()
         ph = graphene.Decimal()
@@ -29,6 +29,7 @@ class SoilHealthCreate(graphene.Mutation):
         temp = graphene.Decimal()
 
     @classmethod
+    @login_required
     def mutate(
         self,
         root,
@@ -39,8 +40,8 @@ class SoilHealthCreate(graphene.Mutation):
             owner=info.context.user,
             ph=ph,
             nitrogen=nitrogen,
-            potassium=potas,
-            phosphorus=phosphorous,
+            potas=potas,
+            phosphorous=phosphorous,
             temp = temp,
             rainfall = rainfall
         )
@@ -65,7 +66,7 @@ class CheckSoilHealth(graphene.Mutation):
 
     class Arguments:
         nitrogen = graphene.Decimal()
-        phosphorus = graphene.Decimal()
+        phosphorous = graphene.Decimal()
         potas = graphene.Decimal()
         humidity = graphene.Decimal()
         ph = graphene.Decimal()
