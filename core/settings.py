@@ -26,6 +26,7 @@ STATICFILES_DIRS = (
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 env = environ.Env()
 environ.Env.read_env()
+# environ.Env.read_env(path.join(BASE_DIR, '.env.production'))
 # SECURITY WARNING: keep the secret key used in production secret!
 SECRET_KEY = env.str('SECRET_KEY')
 
@@ -56,7 +57,9 @@ INSTALLED_APPS = [
     'farmer',
     'crops',
     'crop_plantations',
-    'soil_health'
+    'soil_health',
+    'cloudinary',
+    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -230,3 +233,11 @@ GOVT_DATA_API_KEY=env.str('GOVT_DATA_API_KEY')
 SMS_API_KEY = env.str('SMS_API_KEY')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
+
+CLOUDINARY_STORAGE = {
+    'CLOUD_NAME': env.str('CLOUD_NAME', default=""),
+    'API_KEY': env.str('CLOUD_API_KEY', default=""),
+    'API_SECRET': env.str('CLOUD_API_SECRET', default=""),
+}
+
+DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
