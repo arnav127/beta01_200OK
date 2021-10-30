@@ -4,7 +4,7 @@ import channels_graphql_ws
 from farmer.schema import AuthMutation, AuthQuery, FarmerMutation, CityQuery
 from crops.schema import CropsQuery
 from crop_plantations.schema import CropPlantationQuery, CropPlantationMutation
-from soil_health.schema import SoilHealthQuery, SoilHealthMutation
+from soil_health.schema import SoilHealthQuery, SoilHealthMutation, SoilHealthSubscriptions
 
 class Query(
     AuthQuery,
@@ -27,11 +27,11 @@ class Mutation(
     pass
 
 
-class Subscription(graphene.ObjectType):
+class Subscription(SoilHealthSubscriptions, graphene.ObjectType):
     pass
 
 
-schema = graphene.Schema(query=Query, mutation=Mutation)
+schema = graphene.Schema(query=Query, mutation=Mutation, subscription=Subscription)
 
 class WsConsumer(channels_graphql_ws.GraphqlWsConsumer):
 
