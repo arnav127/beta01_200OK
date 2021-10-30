@@ -51,3 +51,8 @@ class CropPlantation(models.Model):
         return self.crop.name + " - " + self.farmer.username
 
 
+class City(models.Model):
+    city = models.CharField(max_length=40)
+
+    def __str__(self) -> str:
+        return self.city

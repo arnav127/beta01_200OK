@@ -3,7 +3,7 @@ import graphene
 from graphene_django import DjangoObjectType
 from graphql_auth.schema import UserQuery, MeQuery
 from graphql_auth import mutations
-from .models import ExtendUser, Crops, CropPlantation, SoilHealth
+from .models import ExtendUser, Crops, CropPlantation, SoilHealth, City
 from graphql_jwt.decorators import login_required
 
 class UserType(DjangoObjectType):
@@ -42,6 +42,9 @@ class CropPlantationType(DjangoObjectType):
     class Meta:
         model = CropPlantation
 
+class CityType(DjangoObjectType):
+    class Meta:
+        model = City
 class CropsQuery(graphene.ObjectType):
     all_crops = graphene.List(CropsType)
     crop = graphene.Field(CropsType, name=graphene.String())
@@ -130,3 +133,9 @@ class SoilHealthCreate(graphene.Mutation):
             soil_ph=soil_ph, soil_nitrogen=soil_nitrogen,
             soil_potassium=soil_potassium, soil_phosphorus=soil_phosphorus)
         return SoilHealthCreate(soil_health = soil_health)
+
+class CityQuery(graphene.ObjectType):
+    all_cities = graphene.List(CityType)
+
+    def resolve_all_cities(root, info):
+        return City.objects.all()
