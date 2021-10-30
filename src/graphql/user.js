@@ -56,12 +56,6 @@ const GET_USER = gql`
             email
             firstName
             lastName
-            cropplantationSet {
-                id
-                crop
-                harvestedDate
-                plantedDate
-            }
         }
     }
 `;
