@@ -58,8 +58,6 @@ INSTALLED_APPS = [
     'crops',
     'crop_plantations',
     'soil_health',
-    'cloudinary',
-    'cloudinary_storage',
 ]
 
 MIDDLEWARE = [
@@ -233,11 +231,3 @@ GOVT_DATA_API_KEY=env.str('GOVT_DATA_API_KEY')
 SMS_API_KEY = env.str('SMS_API_KEY')
 
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
-
-CLOUDINARY_STORAGE = {
-    'CLOUD_NAME': env.str('CLOUD_NAME', default=""),
-    'API_KEY': env.str('CLOUD_API_KEY', default=""),
-    'API_SECRET': env.str('CLOUD_API_SECRET', default=""),
-}
-
-DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'

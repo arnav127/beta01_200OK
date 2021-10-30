@@ -23,8 +23,6 @@ whitenoise = "*"
 uvicorn = {extras = ["standard"], version = "*"}
 gunicorn = "*"
 psycopg2-binary = "*"
-cloudinary = "*"
-django-cloudinary-storage = "*"
 
 [dev-packages]
 
