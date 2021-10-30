@@ -28,7 +28,7 @@ def recommend_crop(nitrogen, phosphorus, potas, humidity, ph, rainfall, temp, gr
     
     print("ans=",ans[0:5])
 
-    url = "http://localhost:8000/graphql"
+    url = "http://farm-buddy.herokuapp.com/graphql"
     query = """mutation (
         $recs: [String!]
         $group: String!
