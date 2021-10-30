@@ -21,7 +21,7 @@ class SoilHealthCreate(graphene.Mutation):
 
     class Arguments:
         nitrogen = graphene.Decimal()
-        phosphorus = graphene.Decimal()
+        phosphorous = graphene.Decimal()
         potas = graphene.Decimal()
         humidity = graphene.Decimal()
         ph = graphene.Decimal()
@@ -40,7 +40,7 @@ class SoilHealthCreate(graphene.Mutation):
             ph=ph,
             nitrogen=nitrogen,
             potassium=potas,
-            phosphorus=phosphorous,
+            phosphorous=phosphorous,
             temp = temp,
             rainfall = rainfall
         )
@@ -65,7 +65,7 @@ class CheckSoilHealth(graphene.Mutation):
 
     class Arguments:
         nitrogen = graphene.Decimal()
-        phosphorus = graphene.Decimal()
+        phosphorous = graphene.Decimal()
         potas = graphene.Decimal()
         humidity = graphene.Decimal()
         ph = graphene.Decimal()
