@@ -2,6 +2,7 @@ from bs4 import BeautifulSoup
 import requests
 import json
 from farmer.models import ExtendUser
+from services.sms import send_sms
 
 def weather():
     url = 'https://mausam.imd.gov.in/imd_latest/contents/districtwise-warning.php?day=Day_2'
@@ -32,4 +33,7 @@ def weather():
         for farmer in farmers:
             farmer_phones.append(farmer.phone)
 
-    # send SMS through Twilio
+    # message = "चेतावनी: आने वाले दिनों में भारी बारिश और तेज तूफान की अत्यधिक संभावना है। कृपया एहतियात बरतें एवं नज़दीकी कृषि केंद्र में संपर्क करें। "
+    message = "WARNING: "
+    send_sms(farmer_phones, message)
+
