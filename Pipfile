@@ -18,6 +18,7 @@ requests = "*"
 django-crontab = "*"
 datagovindia = "*"
 django-channels-graphql-ws = "*"
+lightgbm = "*"
 
 [dev-packages]
 
