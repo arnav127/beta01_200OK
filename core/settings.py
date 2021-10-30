@@ -48,6 +48,7 @@ INSTALLED_APPS = [
     'graphql_auth',
     'django_filters',
     'django_q',
+    'django_crontab',
     'farmer'
 ]
 
@@ -205,3 +206,7 @@ Q_CLUSTER = {
         'port': env.str('REDIS_PORT'),
     }
 }
+
+CRONJOBS = [
+    ('0 8 * * *', 'services.warnings.weather')
+]
