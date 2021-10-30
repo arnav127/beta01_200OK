@@ -1,9 +1,10 @@
 from datagovindia import DataGovIndia
+from core.settings import GOVT_DATA_API_KEY
 from crops.models import Crops
 import pandas as pd
 
 
-API_KEY = '579b464db66ec23bdd0000011ba9d12290bd43596d85ab8a2ea7bef2'
+API_KEY = GOVT_DATA_API_KEY
 datagovin = DataGovIndia(API_KEY)
 
 def get_msrp_data():
