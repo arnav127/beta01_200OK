@@ -1,8 +1,7 @@
 import React from "react";
-import Select from "react-select";
 import { useMutation, useQuery } from "@apollo/client";
 
-import { GET_CROPS, CREATE_PLANTATION, PLANTED_CROPS } from "../../graphql/crop";
+import { PLANTED_CROPS } from "../../graphql/crop";
 
 const CropInstance = ({ crop }) => {
     const [showModal, setShowModal] = React.useState(false);
@@ -69,36 +68,10 @@ const CropInstance = ({ crop }) => {
 
 const CropList = () => {
     const { data: cropData } = useQuery(PLANTED_CROPS);
-    const { data: allCropData } = useQuery(GET_CROPS);
 
     return cropData ? (
         <div className="mt-2">
             <div className="flex items-center">
-                <div className="flex justify-center items-center w-56 h-56 rounded-sm shadow-lg">
-                    <svg
-                        className="w-24 h-24"
-                        fill="none"
-                        stroke="currentColor"
-                        viewBox="0 0 24 24"
-                        xmlns="http://www.w3.org/2000/svg"
-                    >
-                        <path
-                            strokeLinecap="round"
-                            strokeLinejoin="round"
-                            strokeWidth={1}
-                            d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
-                        />
-                    </svg>
-
-                    <Select
-                        placeholder="Crop"
-                        options={allCropData?.allCrops}
-                        inputId="cropName"
-                        name="cropName"
-
-                    />
-                </div>
-
                 {cropData.allCropsPlanted.map((crop) => (
                     <CropInstance key={crop.id} crop={crop} />
                 ))}

@@ -3,7 +3,7 @@ import { gql } from "@apollo/client";
 const GET_CROPS = gql`
     {
         allCrops {
-            value: id
+            value: name
             label: name
         }
     }
