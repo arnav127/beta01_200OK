@@ -119,9 +119,12 @@ class BroadcastSoilHealth(channels_graphql_ws.Subscription):
     # book = graphene.Field(BookType)
     recommendations = graphene.List(graphene.String)
 
+    class Arguments:
+        username = graphene.String()
+
     @staticmethod
-    def subscribe(root, info):
-        return [info.context.user.username]
+    def subscribe(root, info, username):
+        return [username]
 
     @staticmethod
     def publish(payload, info):
