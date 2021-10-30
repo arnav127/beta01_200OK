@@ -13,6 +13,9 @@ pillow = "*"
 redis = "*"
 django-q = "*"
 django-environ = "*"
+bs4 = "*"
+requests = "*"
+django-crontab = "*"
 
 [dev-packages]
 
