@@ -35,8 +35,6 @@ class CropPlantationCreate(graphene.Mutation):
         crop = Crops.objects.get(name = crop_name)
         
         crop_plantation = CropPlantation(crop=crop, farmer=info.context.user, planted_date=planted_date)
-        if kwargs["harvested_date"]:
-            crop_plantation.harvested_date = kwargs["harvested_date"]
         crop_plantation.save()
         return CropPlantationCreate(crop_plantation = crop_plantation)
 
@@ -55,7 +53,7 @@ class CropPlantationUpdate(graphene.Mutation):
         crop_plantation = CropPlantation.objects.get(pk=id, farmer = info.context.user)
         for k, v in kwargs.items():
             setattr(crop_plantation, k, v)
-        crop_plantation.sive()
+        crop_plantation.save()
         return CropPlantationUpdate(crop_plantation = crop_plantation)
 
 class CropPlantationDelete(graphene.Mutation):
