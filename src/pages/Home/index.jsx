@@ -1,12 +1,12 @@
 import React from "react";
 
-import Navigation from "../../components/Navigation";
+import HomeBar from "../../components/Navigation/HomeBar";
 
 const Home = (props) => {
     return (
         <main className="bg-gradient-to-r from-green-400 via-teal-500 to-blue-500">
             <div className="container px-3 pt-3 mx-auto">
-                <Navigation />
+                <HomeBar />
                 <div className="flex flex-col flex-wrap items-center py-16 md:flex-row">
                     <div className="flex flex-col justify-center items-start w-full text-center text-white md:w-2/5 md:text-left">
                         <p className="w-full uppercase tracking-loose">
