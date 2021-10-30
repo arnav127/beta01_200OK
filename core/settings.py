@@ -49,7 +49,10 @@ INSTALLED_APPS = [
     'django_filters',
     'django_q',
     'django_crontab',
-    'farmer'
+    'farmer',
+    'crops',
+    'crop_plantations',
+    'soil_health'
 ]
 
 MIDDLEWARE = [

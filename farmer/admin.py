@@ -1,10 +1,6 @@
 from django.contrib import admin
-from .models import ExtendUser, Crops, CropPlantation, SoilHealth
-# Register your models here.
-admin.site.register(ExtendUser)
-admin.site.register(Crops)
-admin.site.register(CropPlantation)
+from .models import City, ExtendUser
 
-@admin.register(SoilHealth)
-class SoilHealthAdmin(admin.ModelAdmin):
-    pass
+admin.site.register(ExtendUser)
+admin.site.register(City)
+

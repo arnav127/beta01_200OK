@@ -1,21 +1,26 @@
 import graphene
-from farmer.schema import (
-    AuthMutation,
+from farmer.schema import AuthMutation, AuthQuery, FarmerMutation, CityQuery
+from crops.schema import CropsQuery
+from crop_plantations.schema import CropPlantationQuery, CropPlantationMutation
+from soil_health.schema import SoilHealthQuery, SoilHealthMutation
+
+class Query(
     AuthQuery,
+    CityQuery,
     CropsQuery,
     CropPlantationQuery,
-    FarmerMutation,
-    CropPlantationMutation,
-    CityQuery,
-)
-
-
-class Query(AuthQuery, CropsQuery, CropPlantationQuery, CityQuery, graphene.ObjectType):
+    SoilHealthQuery,
+    graphene.ObjectType,
+):
     pass
 
 
 class Mutation(
-    AuthMutation, FarmerMutation, CropPlantationMutation, graphene.ObjectType
+    AuthMutation,
+    FarmerMutation,
+    CropPlantationMutation,
+    SoilHealthMutation,
+    graphene.ObjectType,
 ):
     pass
 
