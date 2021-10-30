@@ -75,6 +75,7 @@ class SendCropRecommendation(graphene.Mutation):
 
     ok = graphene.Boolean()
 
+    @classmethod
     def mutate(self, info, name, **kwargs):
         ok = True
         # broadcast here
@@ -83,4 +84,22 @@ class SendCropRecommendation(graphene.Mutation):
 
 class FarmerMutation(graphene.ObjectType):
     send_crop_recommendation = SendCropRecommendation.Field()
+    
+class CropPlantationCreate(graphene.Mutation):
+
+    crop_plantation = graphene.Field(CropPlantationType)
+    class Arguments:
+        crop_name = graphene.Field(CropsType)
+        planted_date = graphene.Date()
+        harvested_date = graphene.Date()
+    
+    @classmethod
+    def mutate(self, root, info, crop_name, planted_date, harvested_date):
+        crop = Crops.objects.get(name = crop_name)
+        
+        crop_plantation, _ = CropPlantation.objects.create(crop=crop, farmer=info.context.user, planted_date=planted_date, harvested_date=harvested_date)
+        return CropPlantationCreate(crop_plantation = crop_plantation)
+
+class CropPlantationMutation(graphene.ObjectType):
+    create_crop_plantation = CropPlantationCreate.Field()
     
