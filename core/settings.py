@@ -227,3 +227,4 @@ CRONJOBS = [
     ('0 10 * * *', 'services.msrp.get_msrp_data'),
 ]
 
+WEATHER_API_KEY = env.str('WEATHER_API_KEY')
