@@ -34,7 +34,7 @@ class CropPlantationCreate(graphene.Mutation):
     def mutate(self, root, info, crop_name, planted_date, harvested_date):
         crop = Crops.objects.get(name = crop_name)
         
-        crop_plantation, _ = CropPlantation.objects.create(crop=crop, farmer=info.context.user, planted_date=planted_date, harvested_date=harvested_date)
+        crop_plantation = CropPlantation.objects.create(crop=crop, farmer=info.context.user, planted_date=planted_date, harvested_date=harvested_date)
         return CropPlantationCreate(crop_plantation = crop_plantation)
 
 class CropPlantationUpdate(graphene.Mutation):
