@@ -104,9 +104,7 @@ class SendSoilHealth(graphene.Mutation):
 
     @classmethod
     def mutate(self, root, info, recs, group):
-        print('group in mutate=', group)
-        print('recs in mutate=', recs)
-        BroadcastSoilHealth.mm(group=group, payload=recs)
+        BroadcastSoilHealth.broadcast(payload={"payload": recs}, group=group)
         return SendSoilHealth(success=True)
 
 
@@ -127,13 +125,7 @@ class BroadcastSoilHealth(channels_graphql_ws.Subscription):
 
     @staticmethod
     def publish(payload, info):
-        print('payload in publish =', payload)
-        return CheckSoilHealth(recommendations=payload)
-
-    @staticmethod
-    def mm(payload, group):
-        print('payload in mm =', payload)
-        BroadcastSoilHealth.broadcast(payload={payload}, group=group)
+        return BroadcastSoilHealth(recommendations=payload["payload"])
 
 
 class SoilHealthSubscriptions(graphene.ObjectType):

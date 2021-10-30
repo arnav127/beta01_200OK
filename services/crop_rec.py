@@ -7,7 +7,7 @@ def recommend_crop(nitrogen, phosphorus, potas, humidity, ph, rainfall, temp, gr
     print("group=", group)
     p = os.path.dirname(os.path.abspath(__file__))
     print(p)
-    ap = p + '\\model.pkl'
+    ap = os.path.join(p, 'model.pkl')
     with open(ap, 'rb') as f:
         print(ap)
         model = pkl.load(f)
