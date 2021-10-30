@@ -49,6 +49,7 @@ INSTALLED_APPS = [
     'django_filters',
     'django_q',
     'django_crontab',
+    'channels',
     'farmer',
     'crops',
     'crop_plantations',
@@ -86,6 +87,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'core.wsgi.application'
 
+ASGI_APPLICATION = 'core.asgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
@@ -213,3 +215,4 @@ Q_CLUSTER = {
 CRONJOBS = [
     ('0 8 * * *', 'services.warnings.weather')
 ]
+
