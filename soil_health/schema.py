@@ -55,7 +55,7 @@ class SoilHealthCreate(graphene.Mutation):
             rainfall,
             temp,
             info.context.user.username,
-            hook="services.crop_rec.send_subscription",
+            # hook="services.crop_rec.send_subscription",
         )
         return SoilHealthCreate(soil_health=soil_health)
 
@@ -89,7 +89,7 @@ class CheckSoilHealth(graphene.Mutation):
             rainfall,
             temp,
             info.context.user.username,
-            hook="services.crop_rec.send_subscription",
+            # hook="services.crop_rec.send_subscription",
         )
         return CheckSoilHealth(success=True)
 
@@ -104,7 +104,9 @@ class SendSoilHealth(graphene.Mutation):
 
     @classmethod
     def mutate(self, root, info, recs, group):
-        BroadcastSoilHealth.broadcast(group=group, payload=recs)
+        print('group in mutate=', group)
+        print('recs in mutate=', recs)
+        BroadcastSoilHealth.mm(group=group, payload=recs)
         return SendSoilHealth(success=True)
 
 
@@ -125,7 +127,13 @@ class BroadcastSoilHealth(channels_graphql_ws.Subscription):
 
     @staticmethod
     def publish(payload, info):
+        print('payload in publish =', payload)
         return CheckSoilHealth(recommendations=payload)
+
+    @staticmethod
+    def mm(payload, group):
+        print('payload in mm =', payload)
+        BroadcastSoilHealth.broadcast(payload={payload}, group=group)
 
 
 class SoilHealthSubscriptions(graphene.ObjectType):
