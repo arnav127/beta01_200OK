@@ -3,7 +3,7 @@ import graphene
 from graphene_django import DjangoObjectType
 from graphql_auth.schema import UserQuery, MeQuery
 from graphql_auth import mutations
-from .models import ExtendUser, Crops, CropPlantation
+from .models import ExtendUser, Crops, CropPlantation, SoilHealth
 from graphql_jwt.decorators import login_required
 
 class UserType(DjangoObjectType):
@@ -102,3 +102,31 @@ class CropPlantationCreate(graphene.Mutation):
 
 class CropPlantationMutation(graphene.ObjectType):
     create_crop_plantation = CropPlantationCreate.Field()
+
+
+class SoilHealthMutation(graphene.ObjectType):
+    pass
+
+class SoilHealthQuery(graphene.ObjectType):
+    pass
+
+class SoilHealthType(graphene.ObjectType):
+    class Meta:
+        model = SoilHealth
+
+class SoilHealthCreate(graphene.Mutation):
+    soil_health = graphene.Field(SoilHealthType)
+    class Arguments:
+        owner = graphene.ObjectType(ExtendUser)
+        soil_type = graphene.String()
+        soil_ph = graphene.Float()
+        soil_nitrogen = graphene.Float()
+        soil_potassium = graphene.Float()
+        soil_phosphorus = graphene.Float()
+    
+    @classmethod
+    def mutate(self, root, info,soil_type, soil_ph, soil_nitrogen, soil_potassium, soil_phosphorus):
+        soil_health = SoilHealth.objects.create(owner=info.context.user, soil_type=soil_type, 
+            soil_ph=soil_ph, soil_nitrogen=soil_nitrogen,
+            soil_potassium=soil_potassium, soil_phosphorus=soil_phosphorus)
+        return SoilHealthCreate(soil_health = soil_health)
