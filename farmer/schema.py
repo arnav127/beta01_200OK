@@ -89,7 +89,7 @@ class CropPlantationCreate(graphene.Mutation):
 
     crop_plantation = graphene.Field(CropPlantationType)
     class Arguments:
-        crop_name = graphene.Field(CropsType)
+        crop_name = graphene.String()
         planted_date = graphene.Date()
         harvested_date = graphene.Date()
     
@@ -102,4 +102,3 @@ class CropPlantationCreate(graphene.Mutation):
 
 class CropPlantationMutation(graphene.ObjectType):
     create_crop_plantation = CropPlantationCreate.Field()
-    
