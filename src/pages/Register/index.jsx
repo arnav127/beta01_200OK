@@ -1,8 +1,10 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
+import Select from "react-select";
 
-import { useMutation } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 import { REGISTER_USER } from "../../graphql/user";
+import { GET_CITIES } from "../../graphql/city";
 
 import Spinner from "../../components/Spinner";
 
@@ -24,6 +26,9 @@ export default function Register() {
                 username: formData.get("username"),
                 firstName: formData.get("firstName"),
                 lastName: formData.get("lastName"),
+                phoneNumber: formData.get("phoneNumber"),
+                city: formData.get("city"),
+                state: formData.get("state"),
                 password1: formData.get("password"),
                 password2: formData.get("password"),
             },
@@ -41,9 +46,50 @@ export default function Register() {
         }
     };
 
+    const { data: cityList } = useQuery(GET_CITIES);
+
+    const stateList = [
+        { value: "AN", label: "Andaman and Nicobar Islands" },
+        { value: "AP", label: "Andhra Pradesh" },
+        { value: "AR", label: "Arunachal Pradesh" },
+        { value: "AS", label: "Assam" },
+        { value: "BR", label: "Bihar" },
+        { value: "CG", label: "Chandigarh" },
+        { value: "CH", label: "Chhattisgarh" },
+        { value: "DN", label: "Dadra and Nagar Haveli" },
+        { value: "DD", label: "Daman and Diu" },
+        { value: "DL", label: "Delhi" },
+        { value: "GA", label: "Goa" },
+        { value: "GJ", label: "Gujarat" },
+        { value: "HR", label: "Haryana" },
+        { value: "HP", label: "Himachal Pradesh" },
+        { value: "JK", label: "Jammu and Kashmir" },
+        { value: "JH", label: "Jharkhand" },
+        { value: "KA", label: "Karnataka" },
+        { value: "KL", label: "Kerala" },
+        { value: "LA", label: "Ladakh" },
+        { value: "LD", label: "Lakshadweep" },
+        { value: "MP", label: "Madhya Pradesh" },
+        { value: "MH", label: "Maharashtra" },
+        { value: "MN", label: "Manipur" },
+        { value: "ML", label: "Meghalaya" },
+        { value: "MZ", label: "Mizoram" },
+        { value: "NL", label: "Nagaland" },
+        { value: "OR", label: "Odisha" },
+        { value: "PY", label: "Puducherry" },
+        { value: "PB", label: "Punjab" },
+        { value: "RJ", label: "Rajasthan" },
+        { value: "SK", label: "Sikkim" },
+        { value: "TN", label: "Tamil Nadu" },
+        { value: "TS", label: "Telangana" },
+        { value: "TR", label: "Tripura" },
+        { value: "UP", label: "Uttar Pradesh" },
+        { value: "UK", label: "Uttarakhand" },
+        { value: "WB", label: "West Bengal" },
+    ];
     return (
         <div
-            className="w-full h-screen bg-repeat"
+            className="w-full min-h-screen bg-repeat"
             style={{
                 backgroundColor: "#ecfccb",
                 backgroundImage: `url("data:image/svg+xml,%3Csvg width='80' height='88' viewBox='0 0 80 88' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M22 21.91V26h-2c-9.94 0-18 8.06-18 18 0 9.943 8.058 18 18 18h2v4.09c8.012.722 14.785 5.738 18 12.73 3.212-6.99 9.983-12.008 18-12.73V62h2c9.94 0 18-8.06 18-18 0-9.943-8.058-18-18-18h-2v-4.09c-8.012-.722-14.785-5.738-18-12.73-3.212 6.99-9.983 12.008-18 12.73zM54 58v4.696c-5.574 1.316-10.455 4.428-14 8.69-3.545-4.262-8.426-7.374-14-8.69V58h-5.993C12.27 58 6 51.734 6 44c0-7.732 6.275-14 14.007-14H26v-4.696c5.574-1.316 10.455-4.428 14-8.69 3.545 4.262 8.426 7.374 14 8.69V30h5.993C67.73 30 74 36.266 74 44c0 7.732-6.275 14-14.007 14H54zM42 88c0-9.94 8.06-18 18-18h2v-4.09c8.016-.722 14.787-5.738 18-12.73v7.434c-3.545 4.262-8.426 7.374-14 8.69V74h-5.993C52.275 74 46 80.268 46 88h-4zm-4 0c0-9.943-8.058-18-18-18h-2v-4.09c-8.012-.722-14.785-5.738-18-12.73v7.434c3.545 4.262 8.426 7.374 14 8.69V74h5.993C27.73 74 34 80.266 34 88h4zm4-88c0 9.943 8.058 18 18 18h2v4.09c8.012.722 14.785 5.738 18 12.73v-7.434c-3.545-4.262-8.426-7.374-14-8.69V14h-5.993C52.27 14 46 7.734 46 0h-4zM0 34.82c3.213-6.992 9.984-12.008 18-12.73V18h2c9.94 0 18-8.06 18-18h-4c0 7.732-6.275 14-14.007 14H14v4.696c-5.574 1.316-10.455 4.428-14 8.69v7.433z' fill='%233f6212' fill-opacity='0.4' fill-rule='evenodd'/%3E%3C/svg%3E")`,
@@ -126,24 +172,46 @@ export default function Register() {
                                 <div className="mb-2">
                                     <div className="relative">
                                         <input
-                                            type="select"
-                                            id="city"
-                                            name="city"
-                                            className="rounded-lg border-transparent flex-1 appearance-none border border-teal-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-transparent"
-                                            required
-                                        />
-                                    </div>
-                                </div>
-                                <div className="mb-2">
-                                    <div className="relative">
-                                        <input
                                             type="password"
                                             id="password"
                                             name="password"
                                             className="rounded-lg border-transparent flex-1 appearance-none border border-teal-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-transparent"
                                             placeholder="Password"
                                             required
-                                            minlength="8"
+                                            minLength="8"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="mb-2">
+                                    <div className="relative">
+                                        <input
+                                            type="tel"
+                                            id="phoneNumber"
+                                            name="phoneNumber"
+                                            className="rounded-lg border-transparent flex-1 appearance-none border border-teal-300 w-full py-2 px-4 bg-white text-gray-700 placeholder-gray-400 shadow-sm text-base focus:outline-none focus:ring-2 focus:ring-teal-600 focus:border-transparent"
+                                            placeholder="Mobile Number"
+                                            required
+                                            minLength="8"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="mb-2">
+                                    <div className="relative">
+                                        <Select
+                                            placeholder="City"
+                                            options={cityList?.allCities}
+                                            inputId="city"
+                                            name="city"
+                                        />
+                                    </div>
+                                </div>
+                                <div className="mb-2">
+                                    <div className="relative">
+                                        <Select
+                                            placeholder="State"
+                                            options={stateList}
+                                            inputId="state"
+                                            name="state"
                                         />
                                     </div>
                                 </div>
