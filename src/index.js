@@ -19,11 +19,11 @@ import App from "./App";
 import reportWebVitals from "./reportWebVitals";
 
 const httpLink = createHttpLink({
-    uri: `http://${process.env.REACT_APP_BACKEND_BASEURI}/graphql`,
+    uri: `https://${process.env.REACT_APP_BACKEND_BASEURI}/graphql`,
 });
 
 const wsLink = new WebSocketLink({
-    uri: `ws://${process.env.REACT_APP_BACKEND_BASEURI}/graphql`,
+    uri: `wss://${process.env.REACT_APP_BACKEND_BASEURI}/graphql`,
     options: {
         reconnect: true,
     },
