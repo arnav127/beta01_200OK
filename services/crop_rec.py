@@ -72,6 +72,3 @@ def recommend_crop(nitrogen, phosphorus, potas, humidity, ph, rainfall, temp, gr
 #     }
 #     r = requests.post(url = url, json = data, headers={"content-type": "application/json"})
 #     print(r.text)
-
-
-print(recommend_crop(0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 0.5, 'admin'))

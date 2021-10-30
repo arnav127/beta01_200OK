@@ -123,11 +123,11 @@ class BroadcastSoilHealth(channels_graphql_ws.Subscription):
         username = graphene.String()
 
     @staticmethod
-    def subscribe(root, info, username):
-        return [username]
+    def subscribe(root, info, **kwargs):
+        return [kwargs["username"]]
 
     @staticmethod
-    def publish(payload, info):
+    def publish(payload, info, **kwargs):
         return BroadcastSoilHealth(recommendations=payload["payload"])
 
 
