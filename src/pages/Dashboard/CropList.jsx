@@ -1,5 +1,5 @@
 import React from "react";
-import { useMutation, useQuery } from "@apollo/client";
+import { useQuery } from "@apollo/client";
 
 import { PLANTED_CROPS } from "../../graphql/crop";
 

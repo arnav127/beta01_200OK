@@ -34,8 +34,6 @@ const Dashboard = () => {
                 plantedDate: formData.get("plantedDate"),
             },
         });
-
-        console.log(data)
     };
 
     return (

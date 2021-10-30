@@ -8,7 +8,7 @@ const Sidebar = (props) => {
         <nav className="bg-white dark:bg-gray-800 w-20 h-screen border border-r justify-between flex flex-col flex-shrink-0">
             <div className="mt-4 mb-10">
                 <Link to="/dashboard">
-                    <img src={Logo} className="w-10 h-10 mb-3 mx-auto" />
+                    <img src={Logo} className="w-10 h-10 mb-3 mx-auto" alt="Logo" />
                 </Link>
             </div>
             <div className="mt-10">

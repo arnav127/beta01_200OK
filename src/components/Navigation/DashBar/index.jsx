@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom"
 import { useHistory } from "react-router-dom";
 
 import { AuthContext } from "../../../context/auth";
@@ -12,12 +13,12 @@ export default function Navigation() {
             <nav className="flex flex-wrap items-center justify-between px-2 mt-2 py-3 mb-3">
                 <div className="container px-4 mx-auto flex items-center justify-between">
                     <div className="w-full flex justify-between lg:w-auto lg:static lg:block lg:justify-start">
-                        <a
+                        <Link
                             className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
                             to="/"
                         >
                             Farmer's Helpdesk
-                        </a>
+                        </Link>
                     </div>
                     <button
                         className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug hover:opacity-75"

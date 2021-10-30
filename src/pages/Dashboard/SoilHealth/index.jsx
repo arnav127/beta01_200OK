@@ -1,7 +1,5 @@
-import React, { useState, useContext } from "react";
+import React, { useContext } from "react";
 import { useMutation, useSubscription } from "@apollo/client";
-
-import Spinner from "../../../components/Spinner";
 
 import { AuthContext } from "../../../context/auth";
 import { CREATE_SOIL, SOIL_SUBSCRIPTION } from "../../../graphql/soil";
@@ -9,13 +7,11 @@ import { CREATE_SOIL, SOIL_SUBSCRIPTION } from "../../../graphql/soil";
 const inputStyles =
     "flex-1 py-2 px-4 m-4 w-56 text-base placeholder-gray-400 text-gray-700 bg-white rounded-lg border border-transparent border-cyan-300 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-cyan-600 focus:outline-none";
 
-const SoilHealth = (props) => {
+const SoilHealth = () => {
     const { user } = useContext(AuthContext);
 
-    const [loadAnimation, setLoadAnimation] = useState(false);
-
     const [createSoil] = useMutation(CREATE_SOIL);
-    const { data: recc, loading } = useSubscription(SOIL_SUBSCRIPTION, {
+    const { data: recc } = useSubscription(SOIL_SUBSCRIPTION, {
         variables: {
             username: user?.username,
         },
@@ -23,7 +19,6 @@ const SoilHealth = (props) => {
 
     const handleSubmit = async (e) => {
         e.preventDefault();
-        setLoadAnimation(true);
         const formData = new FormData(e.currentTarget);
 
         const { data, error } = await createSoil({
@@ -37,8 +32,6 @@ const SoilHealth = (props) => {
                 temp: formData.get("temp"),
             },
         });
-
-        setLoadAnimation(false);
     };
 
     return (
