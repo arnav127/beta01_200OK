@@ -13,10 +13,10 @@ import Register from "./pages/Register";
 const App = () => {
     const { loadUser } = useContext(AuthContext);
 
-    const { data } = useQuery(GET_USER);
-    useEffect(() => {
-        loadUser(data?.me);
-    }, [data]);
+    const { loading } = useQuery(GET_USER, { onCompleted: (data) => loadUser(data?.me || {}) });
+    // useEffect(() => {
+    //     loadUser(data?.me);
+    // }, [data]);
     return (
         <Router>
             <Switch>

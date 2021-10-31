@@ -22,11 +22,11 @@ import * as serviceWorkerRegistration from "./serviceWorkerRegistration";
 import reportWebVitals from "./reportWebVitals";
 
 const httpLink = createHttpLink({
-    uri: `https://${process.env.REACT_APP_BACKEND_BASEURI}/graphql`,
+    uri: `${process.env.NODE_ENV === "production" ? "https" : "http"}://${process.env.REACT_APP_BACKEND_BASEURI}/graphql`,
 });
 
 const wsLink = new WebSocketLink({
-    uri: `wss://${process.env.REACT_APP_BACKEND_BASEURI}/graphql`,
+    uri: `${process.env.NODE_ENV === "production" ? "wss" : "ws"}://${process.env.REACT_APP_BACKEND_BASEURI}/graphql`,
     options: {
         reconnect: true,
     },

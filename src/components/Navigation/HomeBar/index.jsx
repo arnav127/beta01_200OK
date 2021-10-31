@@ -1,7 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 
+import { AuthContext } from "../../../context/auth"
+
 export default function Navigation() {
+    const { user } = React.useContext(AuthContext)
+
     const [navbarOpen, setNavbarOpen] = React.useState(false);
     return (
         <>
@@ -43,22 +47,36 @@ export default function Navigation() {
                         id="example-navbar-danger"
                     >
                         <ul className="flex flex-col lg:flex-row list-none lg:ml-auto">
-                            <li className="nav-item">
-                                <Link
-                                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                                    to="/login"
-                                >
-                                    <span className="ml-2">Login</span>
-                                </Link>
-                            </li>
-                            <li className="nav-item">
-                                <Link
-                                    className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
-                                    to="/register"
-                                >
-                                    <span className="ml-2">Register</span>
-                                </Link>
-                            </li>
+                            {user ? (
+                                <li className="nav-item">
+                                    <Link
+                                        className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                                        to="/dashboard"
+                                    >
+                                        <span className="ml-2">Dashboard</span>
+                                    </Link>
+                                </li>
+                            ) :
+                                (
+                                    <>
+                                        <li className="nav-item">
+                                            <Link
+                                                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                                                to="/login"
+                                            >
+                                                <span className="ml-2">Login</span>
+                                            </Link>
+                                        </li>
+                                        <li className="nav-item">
+                                            <Link
+                                                className="px-3 py-2 flex items-center text-xs uppercase font-bold leading-snug text-white hover:opacity-75"
+                                                to="/register"
+                                            >
+                                                <span className="ml-2">Register</span>
+                                            </Link>
+                                        </li>
+                                    </>
+                                )}
                         </ul>
                     </div>
                 </div>
