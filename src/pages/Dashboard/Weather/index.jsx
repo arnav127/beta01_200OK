@@ -21,7 +21,7 @@ const Weather = () => {
 
     const { data: weatherData } = useQuery(GET_WEATHER, {
         variables: {
-            city: "Bhopal",
+            city: user?.city,
         },
     });
 
