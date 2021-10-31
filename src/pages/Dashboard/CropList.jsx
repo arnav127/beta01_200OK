@@ -12,7 +12,7 @@ const CropInstance = ({ crop }) => {
                 <div
                     className="w-full md:w-56 md:h-56 bg-center bg-cover rounded-lg"
                     style={{
-                        backgroundImage: `url("https://${process.env.REACT_APP_BACKEND_BASEURI}/${crop.crop.photo}")`,
+                        backgroundImage: `url("https://${process.env.REACT_APP_BACKEND_BASEURI}/static/images/crops/${crop.crop.name}.jpg")`,
                     }}
                 />
                 <div className="absolute bottom-0 p-2 w-full bg-white rounded-b-sm">

@@ -16,7 +16,10 @@ import Weather from "./Weather";
 import Map from "./Map";
 import MSRP from "./MSRP";
 
+import { useTranslation } from "react-i18next";
+
 const Dashboard = () => {
+    const { t } = useTranslation();
     const currentDate = new Date();
     const date = `${currentDate.toDateString()}`;
 
@@ -57,7 +60,7 @@ const Dashboard = () => {
                             >
                                 <div>
                                     <h2 className="text-bold text-3xl">
-                                        Welcome back, {user?.firstName}
+                                        {t("Welcome back")}, {user?.firstName}
                                     </h2>
                                     <p className="text-semibold mt-1">{date}</p>
                                 </div>

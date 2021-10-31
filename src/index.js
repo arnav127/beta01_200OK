@@ -13,6 +13,8 @@ import { getMainDefinition } from "@apollo/client/utilities";
 
 import "./index.css";
 
+import './translations/i18n'
+
 import { AuthProvider } from "./context/auth";
 
 import App from "./App";
