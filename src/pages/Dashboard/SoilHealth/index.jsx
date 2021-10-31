@@ -113,7 +113,7 @@ const SoilHealth = () => {
                     type="submit"
                     className="py-2 px-4 m-4 w-56 text-base font-semibold text-center text-white bg-cyan-600 rounded-lg shadow-md transition duration-200 ease-in hover:bg-cyan-700 focus:ring-2 focus:ring-cyan-500 focus:ring-offset-2 focus:ring-offset-cyan-200 focus:outline-none"
                 >
-                    Submit
+                    {t("Submit")}
                 </button>
             </form>
 

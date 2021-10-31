@@ -17,9 +17,13 @@ const translations = {
       "Wheat": "Wheat",
       "Soybean": "Soybean",
       "Cotton": "Cotton",
+      "Apple": "Apple",
+      "Banana": "Banana",
+      "Kidneybeans": "Kidneybeans",
       "Crop Recommender": "Crop Recommender",
       "recommend explain": "Enter values from soil test below to find out the recommended crops for your soil type.",
       "recommend crop": "Recommended crops are: ",
+      "Submit": "Submit",
     }
   },
   hi: {
@@ -39,9 +43,13 @@ const translations = {
       "Wheat": "गेहू ",
       "Soyabean": "सोयाबीन",
       "Cotton": "कपास",
+      "Kidneybeans": "राजमा",
+      "Apple": "सेब",
+      "Banana": "केला",
       "Crop Recommender": "खेती सुझाव",
       "recommend explain": "अपने खेत की जानकारी यहा भरे ताकी हम आपको आपके खेत के लिए सबसे उत्तम फसलों की सुझाव दे सके ",
       "recommend crop": "आपके खेत के लिए फसल सुझाव:",
+      "Submit": "जमा करें",
     }
   }
 }
