@@ -14,6 +14,7 @@ import CropList from "./CropList";
 import SoilHealth from "./SoilHealth";
 import Weather from "./Weather";
 import Map from "./Map";
+import MSRP from "./MSRP";
 
 const Dashboard = () => {
     const currentDate = new Date();
@@ -34,6 +35,8 @@ const Dashboard = () => {
                 plantedDate: formData.get("plantedDate"),
             },
         });
+
+        window.location.reload()
     };
 
     return (
@@ -120,6 +123,9 @@ const Dashboard = () => {
                     </Route>
                     <Route path="/dashboard/weather">
                         <Weather />
+                    </Route>
+                    <Route path="/dashboard/msrp">
+                        <MSRP />
                     </Route>
                 </Switch>
             </div>
