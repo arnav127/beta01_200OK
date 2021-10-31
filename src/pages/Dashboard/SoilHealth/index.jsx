@@ -4,10 +4,13 @@ import { useMutation, useSubscription } from "@apollo/client";
 import { AuthContext } from "../../../context/auth";
 import { CREATE_SOIL, SOIL_SUBSCRIPTION } from "../../../graphql/soil";
 
+import { useTranslation } from "react-i18next";
+
 const inputStyles =
     "flex-1 py-2 px-4 m-4 w-56 text-base placeholder-gray-400 text-gray-700 bg-white rounded-lg border border-transparent border-cyan-300 shadow-sm appearance-none focus:border-transparent focus:ring-2 focus:ring-cyan-600 focus:outline-none";
 
 const SoilHealth = () => {
+    const {t} = useTranslation();
     const { user } = useContext(AuthContext);
 
     const [createSoil] = useMutation(CREATE_SOIL);
@@ -37,9 +40,9 @@ const SoilHealth = () => {
     return (
         <section className="container mx-auto">
             <h2 className="text-2xl font-semibold px-4">
-                Crop Recommender
+                {t("Crop Recommender")}
             </h2>
-            <p className="px-4 py-2">Enter values from soil test below to find out the recommended crops for your soil type.</p>
+            <p className="px-4 py-2">{t("recommend explain")}</p>
             <hr />
 
             <form className="my-8" onSubmit={handleSubmit}>
@@ -117,7 +120,7 @@ const SoilHealth = () => {
 
             {recc &&
                 <>
-                    <p>Recommended crops are: </p>
+                    <p>{t("recommend crop")} </p>
                     <ul className="list-disc">
                         {recc?.soilRec?.recommendations.map(crop => <li key={crop}>{crop}</li>)}
                     </ul>

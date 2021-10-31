@@ -3,7 +3,10 @@ import { useMutation, useQuery } from "@apollo/client";
 
 import { PLANTED_CROPS, DELETE_PLANTATION } from "../../graphql/crop";
 
+import { useTranslation } from "react-i18next";
+
 const CropInstance = ({ crop }) => {
+    const { t } = useTranslation();
     const [showModal, setShowModal] = React.useState(false);
     const [deletePlantation] = useMutation(DELETE_PLANTATION);
     return (
@@ -17,7 +20,7 @@ const CropInstance = ({ crop }) => {
                 />
                 <div className="absolute bottom-0 p-2 w-full bg-white rounded-b-sm">
                     <div className="flex justify-between items-center px-2">
-                        <h3>{crop.crop.name}</h3>
+                        <h3>{t(`${crop.crop.name}`)}</h3>
                         <button className="text-red-400 inline-block" onClick={() => setShowModal(true)}>
                             <svg className="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" /></svg>
                         </button>
@@ -45,7 +48,7 @@ const CropInstance = ({ crop }) => {
                             <div className="border-0 rounded-lg shadow-lg relative flex flex-col w-full bg-white outline-none focus:outline-none">
                                 <div className="flex items-start justify-between p-5 border-b border-solid border-blueGray-200 rounded-t">
                                     <h3 className="text-3xl font-semibold">
-                                        Harvested {crop.crop.name}?
+                                        {t("Harvested")} {crop.crop.name}?
                                     </h3>
                                 </div>
                                 <div className="flex items-center justify-end border-t border-solid rounded-b">

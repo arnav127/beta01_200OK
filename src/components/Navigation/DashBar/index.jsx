@@ -5,7 +5,10 @@ import { useHistory } from "react-router-dom";
 import { AuthContext } from "../../../context/auth";
 import i18n from '../../../translations/i18n';
 
+import { useTranslation } from "react-i18next";
+
 export default function Navigation() {
+    const {t} = useTranslation();
     const changeLanguage = (lng) => {
         i18n.changeLanguage(lng);
     }
@@ -24,7 +27,7 @@ export default function Navigation() {
                             className="text-sm font-bold leading-relaxed inline-block mr-4 py-2 whitespace-nowrap uppercase"
                             to="/"
                         >
-                            Farmer's Helpdesk
+                            {t("Farmer's Helpdesk")}
                         </Link>
                     </div>
                     <div className="flex items-center">
@@ -39,7 +42,7 @@ export default function Navigation() {
                             }}
                         >
                             <span className="mr-2 hidden sm:inline-block font-bold leading-relaxed">
-                                Logout
+                                {t("Logout")}
                             </span>
                             <svg
                                 className="w-6 h-6"

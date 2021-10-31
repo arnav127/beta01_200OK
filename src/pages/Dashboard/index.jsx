@@ -82,7 +82,7 @@ const Dashboard = () => {
                                             d="M12 9v3m0 0v3m0-3h3m-3 0H9m12 0a9 9 0 11-18 0 9 9 0 0118 0z"
                                         />
                                     </svg>
-                                    Add crop</h4>
+                                    {t("Add crop")}</h4>
 
                                 <form className="my-4" onSubmit={handleSubmit}>
                                     <Select
@@ -105,7 +105,7 @@ const Dashboard = () => {
                                         type="submit"
                                         className="py-2 px-4 bg-teal-600 hover:bg-teal-700 focus:ring-teal-500 focus:ring-offset-teal-200 text-white w-full transition ease-in duration-200 text-center text-base font-semibold shadow-md focus:outline-none focus:ring-2 focus:ring-offset-2 rounded-lg"
                                     >
-                                        Add
+                                        {t("Add")}
                                     </button>
                                 </form>
                             </div>
@@ -113,7 +113,7 @@ const Dashboard = () => {
                         </div>
 
                         <h4 className="text-2xl font-semibold p-2 mt-4">
-                            Your crops
+                            {t("Your crops")}
                         </h4>
                         <hr />
                         <CropList />

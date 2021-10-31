@@ -7,7 +7,11 @@ import { AuthContext } from "../../context/auth";
 
 import Spinner from "../../components/Spinner";
 
+import { useTranslation } from "react-i18next";
+
+
 const Login = () => {
+    const { t } = useTranslation();
     const { login } = useContext(AuthContext);
     const history = useHistory();
     const [errMsg, setErrMsg] = useState("");
