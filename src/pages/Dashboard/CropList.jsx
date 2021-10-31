@@ -1,15 +1,16 @@
 import React from "react";
-import { useQuery } from "@apollo/client";
+import { useMutation, useQuery } from "@apollo/client";
 
-import { PLANTED_CROPS } from "../../graphql/crop";
+import { PLANTED_CROPS, DELETE_PLANTATION } from "../../graphql/crop";
 
 const CropInstance = ({ crop }) => {
     const [showModal, setShowModal] = React.useState(false);
+    const [deletePlantation] = useMutation(DELETE_PLANTATION);
     return (
         <>
             <div className="relative m-2 shadow-lg">
                 <div
-                    className="w-56 h-56 bg-center bg-cover rounded-lg"
+                    className="w-full md:w-56 md:h-56 bg-center bg-cover rounded-lg"
                     style={{
                         backgroundImage: `url("https://${process.env.REACT_APP_BACKEND_BASEURI}/${crop.crop.photo}")`,
                     }}
@@ -51,7 +52,15 @@ const CropInstance = ({ crop }) => {
                                     <button
                                         className="text-red-500 background-transparent font-bold uppercase px-6 py-2 text-sm outline-none focus:outline-none mr-1 mb-1 ease-linear transition-all duration-150"
                                         type="button"
-                                        onClick={() => setShowModal(false)}
+                                        onClick={() => {
+                                            const { data, error } = deletePlantation({
+                                                variables: {
+                                                    id: crop?.id
+                                                }
+                                            });
+                                            window.location.reload()
+                                            setShowModal(false)
+                                        }}
                                     >
                                         Delete crop
                                     </button>
@@ -71,7 +80,7 @@ const CropList = () => {
 
     return cropData ? (
         <div className="mt-2">
-            <div className="flex items-center">
+            <div className="flex flex-wrap items-center">
                 {cropData.allCropsPlanted.map((crop) => (
                     <CropInstance key={crop.id} crop={crop} />
                 ))}

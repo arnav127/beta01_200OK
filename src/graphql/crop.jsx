@@ -30,6 +30,13 @@ const CREATE_PLANTATION = gql`
     }
 `;
 
+const DELETE_PLANTATION = gql`
+mutation ($id: ID!) {
+  deleteCropPlantation(id: $id) {
+    success
+  }
+}
+`;
 const PLANTED_CROPS = gql`
     {
         allCropsPlanted {
@@ -45,4 +52,4 @@ const PLANTED_CROPS = gql`
     }
 `;
 
-export { GET_CROPS, CREATE_PLANTATION, PLANTED_CROPS };
+export { GET_CROPS, CREATE_PLANTATION, DELETE_PLANTATION, PLANTED_CROPS };
