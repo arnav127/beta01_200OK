@@ -32,8 +32,9 @@ const MSRP = (props) => {
       <hr />
       <ul className="list-disc">
         {msrpData.map(c => (
-          <li>{c.commodity}:
-            Minimum: {c.min_price}, Maximum: {c.max_price}, Modal: {c.modal_price}</li>
+          <li key={c.commodity}>{c.commodity}:
+            Minimum: {c.min_price}, Maximum: {c.max_price}, Modal: {c.modal_price}
+          </li>
         ))}
       </ul>
     </div>
