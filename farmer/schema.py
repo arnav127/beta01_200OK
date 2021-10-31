@@ -75,3 +75,13 @@ class WeatherQuery(graphene.ObjectType):
         print(querytext)
         response = requests.get(querytext)
         return response.json()
+
+
+class MSRPQuery(graphene.ObjectType):
+    get_msrp = graphene.Field(graphene.JSONString, city=graphene.String())
+
+    def resolve_get_msrp(self, info, city):
+        from core.settings import GOVT_DATA_API_KEY
+        querytext = f'https://api.data.gov.in/resource/9ef84268-d588-465a-a308-a864a43d0070?api-key={GOVT_DATA_API_KEY}&format=json&offset=0&limit=100&filters[district]={city}'
+        res = requests.get(querytext)
+        return res.json()

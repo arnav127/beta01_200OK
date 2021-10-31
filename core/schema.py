@@ -6,6 +6,7 @@ from crops.schema import CropsQuery
 from crop_plantations.schema import CropPlantationQuery, CropPlantationMutation
 from soil_health.schema import SoilHealthQuery, SoilHealthMutation, SoilHealthSubscriptions
 from farmer.schema import WeatherQuery
+from farmer.schema import MSRPQuery
 
 class Query(
     AuthQuery,
@@ -14,6 +15,7 @@ class Query(
     CropPlantationQuery,
     SoilHealthQuery,
     WeatherQuery,
+    MSRPQuery,
     graphene.ObjectType,
 ):
     pass
